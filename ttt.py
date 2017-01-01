@@ -126,10 +126,19 @@ class Board:
                             freqs[i] = 1
                 options = []
                 cur_max = 0
-                for k, v in freqs.iteritems:
+                for k, v in freqs.iteritems():
                     if v >= cur_max:
+                        if v > cur_max:
+                            cur_max = v
+                            options = []
                         options.append(k)
-                return random.choice(options)
+                
+                if len(options) > 0:
+                    for row in owner_square:
+                        for s in row:
+                            if s in options:
+                                return s
+                return options[0] 
 
             return None
         else:
